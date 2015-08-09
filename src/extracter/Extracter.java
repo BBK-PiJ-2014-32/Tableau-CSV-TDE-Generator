@@ -18,6 +18,7 @@ public class Extracter {
 	
 	private File file;
 	private String[] headingArray;
+	private int columnCount;
 	
 	public void getFile() throws FileNotFoundException {
 		if(!file.exists()){
@@ -66,6 +67,13 @@ public class Extracter {
 		
 	}*/
 	
+	public int getColumnCount(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter header title");
+		columnCount = sc.nextInt();
+		return columnCount;
+	}
+	
 	public String[] getHeaders(int columnCount){
 		Scanner sc = new Scanner(System.in);
 		headingArray = new String[columnCount];
@@ -74,6 +82,7 @@ public class Extracter {
 			System.out.println("Enter header title");
 			headingArray[i] = sc.next();
 		}
+		sc.close();
 		return headingArray;
 		
 	}
