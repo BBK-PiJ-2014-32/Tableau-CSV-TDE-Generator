@@ -2,6 +2,8 @@ package extracter;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+
 import javax.swing.*;
 
 
@@ -54,7 +56,17 @@ public class UserInterface {
 		jFrame.pack();
 		jFrame.setVisible(true);
 	
-
+		JFrame parentFrame = new JFrame();
+		 
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");   
+		 
+		int userSelection = fileChooser.showSaveDialog(parentFrame);
+		 
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		    File fileToSave = fileChooser.getSelectedFile();
+		    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+		}
 	
 	}
 	public static void main(String[] args){
