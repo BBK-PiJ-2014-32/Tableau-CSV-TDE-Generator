@@ -86,6 +86,20 @@ public class Extracter {
 		return headingArray;
 		
 	}
+	
+	public String[] getType(int columnCount){
+		Scanner sc = new Scanner(System.in);
+		headingArray = new String[columnCount];
+		String heading = "";
+		for(int i = 0; i < columnCount; i++){
+			System.out.println("Enter field type");
+			headingArray[i] = sc.next();
+		}
+		sc.close();
+		return headingArray;
+		
+	}
+	}
 
 	public static void main(String[] args){
 		Extracter ex = new Extracter();
