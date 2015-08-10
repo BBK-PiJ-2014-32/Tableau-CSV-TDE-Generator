@@ -99,7 +99,7 @@ public class Extracter {
 		return headingArray;
 		
 	}
-	}
+
 
 	public static void main(String[] args){
 		Extracter ex = new Extracter();
