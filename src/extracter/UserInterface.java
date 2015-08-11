@@ -82,6 +82,7 @@ public class UserInterface {
 		    @Override
 		    public void actionPerformed(ActionEvent event) {
 		        System.out.println("The column count is: " + textBox.getText());
+		        jFrame.dispose();
 		    }
 		});
 		
