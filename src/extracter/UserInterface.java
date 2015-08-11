@@ -70,17 +70,21 @@ public class UserInterface {
 		textBox.setPreferredSize(new Dimension(75, 50));
 		jFrame.add(textBox);
 		
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 
+        JButton button = new JButton("Submit");
 		
-		
+        jFrame.getContentPane().add(button);
 		jFrame.pack();
 		jFrame.setVisible(true);
 		
-		textBox.addActionListener(new ActionListener() {
+		button.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent event) {
 		        System.out.println("The column count is: " + textBox.getText());
 		    }
 		});
+		
 		return columnCount;
 		
 	}
