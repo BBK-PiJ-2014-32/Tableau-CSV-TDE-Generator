@@ -10,6 +10,7 @@ import javax.swing.*;
 public class UserInterface {
 
 	public static JButton enterButton;
+	public static int columnCount;
 	private static String ENTER = "Enter";
     public static JTextArea output;
     public static JTextField input;
@@ -61,6 +62,29 @@ public class UserInterface {
 	
 	}
 	
+	public static int getColumnCount(){
+		JFrame jFrame = new JFrame("CSV TDE creator");
+		jFrame.setPreferredSize(new Dimension(250, 250));
+		jFrame.setLayout(new FlowLayout());
+		JTextField textBox = new JTextField();
+		textBox.setPreferredSize(new Dimension(75, 50));
+		jFrame.add(textBox);
+		
+		
+		
+		jFrame.pack();
+		jFrame.setVisible(true);
+		
+		textBox.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent event) {
+		        System.out.println("The column count is: " + textBox.getText());
+		    }
+		});
+		return columnCount;
+		
+	}
+	
 	public static String getCSVFile(){
 		JFrame parentFrame = new JFrame();
 		 
@@ -77,7 +101,8 @@ public class UserInterface {
 	}
 	
 	public static void main(String[] args){
-		setupFrame();
+		//setupFrame();
+		System.out.println(getColumnCount());
 		System.out.println(getCSVFile());
 	}
 }
