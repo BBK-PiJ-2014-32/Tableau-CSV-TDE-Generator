@@ -17,6 +17,7 @@ public class UserInterface {
     static JPanel panel;
 	public static String myString;
 	public static JTextArea editTextArea = new JTextArea("Type Here!");
+	public static String path;
 
 	
 	public static void setupFrame(){
@@ -56,20 +57,27 @@ public class UserInterface {
 		jFrame.pack();
 		jFrame.setVisible(true);
 	
+		
+	
+	}
+	
+	public static String getCSVFile(){
 		JFrame parentFrame = new JFrame();
 		 
 		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Specify a file to save");   
+		fileChooser.setDialogTitle("Specify a file to open");   
 		 
-		int userSelection = fileChooser.showSaveDialog(parentFrame);
+		int userSelection = fileChooser.showOpenDialog(parentFrame);
 		 
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
-		    File fileToSave = fileChooser.getSelectedFile();
-		    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+		    File fileToOpen = fileChooser.getSelectedFile();
+		   path = fileToOpen.getAbsolutePath();
 		}
-	
+		return path;
 	}
+	
 	public static void main(String[] args){
 		setupFrame();
+		System.out.println(getCSVFile());
 	}
 }
