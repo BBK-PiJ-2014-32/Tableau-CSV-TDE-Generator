@@ -3,6 +3,7 @@ package extracter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.Scanner;
 
 import javax.swing.*;
 
@@ -11,6 +12,7 @@ public class UserInterface {
 
 	public static JButton enterButton;
 	public static int columnCount;
+	public static String[] headingArray;
 	private static String ENTER = "Enter";
     public static JTextArea output;
     public static JTextField input;
@@ -58,9 +60,47 @@ public class UserInterface {
 		jFrame.pack();
 		jFrame.setVisible(true);
 	
-		
-	
+
 	}
+	
+	public static String[] getHeaders(int count){
+		headingArray = new String[count];
+		JFrame jFrame = new JFrame("CSV TDE creator");
+		jFrame.setPreferredSize(new Dimension(250, 250));
+		jFrame.setLayout(new FlowLayout());
+		JTextField textBox = new JTextField();
+		textBox.setPreferredSize(new Dimension(75, 50));
+		jFrame.add(textBox);
+		
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 
+        JButton button = new JButton("Submit");
+		
+        jFrame.getContentPane().add(button);
+		jFrame.pack();
+		jFrame.setVisible(true);
+		
+		button.addActionListener(new ActionListener() {
+			int count = 0;
+			@Override
+		    public void actionPerformed(ActionEvent event) {
+				if(count < 4){
+					headingArray[count] = textBox.getText();
+					System.out.println(headingArray[count] + count);
+					System.out.println(textBox.getText());
+					count++;
+				} else {
+				
+				jFrame.dispose();
+				}
+			}
+		});
+		
+		return headingArray;
+		
+	}
+	
+	
 	
 	public static int getColumnCount(){
 		JFrame jFrame = new JFrame("CSV TDE creator");
@@ -105,9 +145,19 @@ public class UserInterface {
 		return path;
 	}
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws InterruptedException{
 		//setupFrame();
-		System.out.println(getColumnCount());
-		System.out.println(getCSVFile());
+		
+		//columnCount = getColumnCount();
+		//path = getCSVFile();
+		String[] testArray = getHeaders(4);
+		Thread.sleep(10000);
+		
+		for(int i = 0; i < 4; i++){
+			System.out.println(testArray[i]);
+		}
+		
 	}
 }
+
+	
