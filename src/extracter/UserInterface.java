@@ -63,8 +63,8 @@ public class UserInterface {
 
 	}
 	
-	public static String[] getHeaders(int count){
-		headingArray = new String[count];
+	public static void setHeaders(int columnCount){
+		headingArray = new String[columnCount];
 		JFrame jFrame = new JFrame("CSV TDE creator");
 		jFrame.setPreferredSize(new Dimension(250, 250));
 		jFrame.setLayout(new FlowLayout());
@@ -84,7 +84,7 @@ public class UserInterface {
 			int count = 0;
 			@Override
 		    public void actionPerformed(ActionEvent event) {
-				if(count < 4){
+				if(count < columnCount){
 					headingArray[count] = textBox.getText();
 					System.out.println(headingArray[count] + count);
 					System.out.println(textBox.getText());
@@ -96,13 +96,11 @@ public class UserInterface {
 			}
 		});
 		
-		return headingArray;
-		
 	}
 	
 	
 	
-	public static int getColumnCount(){
+	public static void setColumnCount(){
 		JFrame jFrame = new JFrame("CSV TDE creator");
 		jFrame.setPreferredSize(new Dimension(250, 250));
 		jFrame.setLayout(new FlowLayout());
@@ -121,16 +119,17 @@ public class UserInterface {
 		button.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent event) {
-		        System.out.println("The column count is: " + textBox.getText());
-		        jFrame.dispose();
+		        columnCount = Integer.parseInt(textBox.getText());
+		    	System.out.println("The column count is: " + columnCount);
+		    	jFrame.dispose();
+		    	setCSVFile(); 
 		    }
 		});
 		
-		return columnCount;
 		
 	}
 	
-	public static String getCSVFile(){
+	public static void setCSVFile(){
 		JFrame parentFrame = new JFrame();
 		 
 		JFileChooser fileChooser = new JFileChooser();
@@ -141,22 +140,12 @@ public class UserInterface {
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		    File fileToOpen = fileChooser.getSelectedFile();
 		   path = fileToOpen.getAbsolutePath();
+		   setHeaders(columnCount);
 		}
-		return path;
 	}
 	
 	public static void main(String[] args) throws InterruptedException{
-		//setupFrame();
-		
-		//columnCount = getColumnCount();
-		//path = getCSVFile();
-		String[] testArray = getHeaders(4);
-		Thread.sleep(10000);
-		
-		for(int i = 0; i < 4; i++){
-			System.out.println(testArray[i]);
-		}
-		
+		setColumnCount();	
 	}
 }
 
