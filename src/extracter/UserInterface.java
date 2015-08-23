@@ -13,6 +13,7 @@ public class UserInterface {
 	public static JButton enterButton;
 	public static int columnCount;
 	public static String[] headingArray;
+	public static String[] typeArray;
 	private static String ENTER = "Enter";
     public static JTextArea output;
     public static JTextField input;
@@ -65,7 +66,7 @@ public class UserInterface {
 	
 	public static void setHeaders(int columnCount){
 		headingArray = new String[columnCount];
-		JFrame jFrame = new JFrame("CSV TDE creator");
+		JFrame jFrame = new JFrame("Set Headers");
 		jFrame.setPreferredSize(new Dimension(250, 250));
 		jFrame.setLayout(new FlowLayout());
 		JTextField textBox = new JTextField();
@@ -92,12 +93,47 @@ public class UserInterface {
 				} else {
 				
 				jFrame.dispose();
+				setType(columnCount);
 				}
 			}
 		});
 		
 	}
 	
+	public static void setType(int columnCount){
+		typeArray = new String[columnCount];
+		JFrame jFrame = new JFrame("Set Type");
+		jFrame.setPreferredSize(new Dimension(250, 250));
+		jFrame.setLayout(new FlowLayout());
+		JTextField textBox = new JTextField();
+		textBox.setPreferredSize(new Dimension(75, 50));
+		jFrame.add(textBox);
+		
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 
+        JButton button = new JButton("Submit");
+		
+        jFrame.getContentPane().add(button);
+		jFrame.pack();
+		jFrame.setVisible(true);
+		
+		button.addActionListener(new ActionListener() {
+			int count = 0;
+			@Override
+		    public void actionPerformed(ActionEvent event) {
+				if(count < columnCount){
+					typeArray[count] = textBox.getText();
+					System.out.println(typeArray[count] + count);
+					System.out.println(textBox.getText());
+					count++;
+				} else {
+				
+				jFrame.dispose();
+				}
+			}
+		});
+		
+	}
 	
 	
 	public static void setColumnCount(){
