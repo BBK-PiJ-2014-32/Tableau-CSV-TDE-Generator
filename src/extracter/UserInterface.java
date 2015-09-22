@@ -87,8 +87,7 @@ public class UserInterface {
 		    public void actionPerformed(ActionEvent event) {
 				if(count < columnCount){
 					headingArray[count] = textBox.getText();
-					System.out.println(headingArray[count] + count);
-					System.out.println(textBox.getText());
+					textBox.setText("");
 					count++;
 				} else {
 				
@@ -123,8 +122,7 @@ public class UserInterface {
 		    public void actionPerformed(ActionEvent event) {
 				if(count < columnCount){
 					typeArray[count] = textBox.getText();
-					System.out.println(typeArray[count] + count);
-					System.out.println(textBox.getText());
+					textBox.setText("");
 					count++;
 				} else {
 				
@@ -156,7 +154,6 @@ public class UserInterface {
 		    @Override
 		    public void actionPerformed(ActionEvent event) {
 		        columnCount = Integer.parseInt(textBox.getText());
-		    	System.out.println("The column count is: " + columnCount);
 		    	jFrame.dispose();
 		    	setCSVFile(); 
 		    }
