@@ -32,7 +32,7 @@ public class UserInterface {
 		
 		greenMenuBar.setOpaque(true);
 		greenMenuBar.setBackground(new Color(154, 165, 127));
-		greenMenuBar.setPreferredSize(new Dimension(200, 20));
+		greenMenuBar.setPreferredSize(new Dimension(200, 25));
 		
 		JTextField textField = new JTextField();
 		textField.setBounds(6, 41, 134, 28);
@@ -67,10 +67,10 @@ public class UserInterface {
 	public static void setHeaders(int columnCount){
 		headingArray = new String[columnCount];
 		JFrame jFrame = new JFrame("Set Headers");
-		jFrame.setPreferredSize(new Dimension(250, 250));
+		jFrame.setPreferredSize(new Dimension(250, 100));
 		jFrame.setLayout(new FlowLayout());
 		JTextField textBox = new JTextField();
-		textBox.setPreferredSize(new Dimension(75, 50));
+		textBox.setPreferredSize(new Dimension(100, 30));
 		jFrame.add(textBox);
 		
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,10 +102,10 @@ public class UserInterface {
 	public static void setType(int columnCount){
 		typeArray = new String[columnCount];
 		JFrame jFrame = new JFrame("Set Type");
-		jFrame.setPreferredSize(new Dimension(250, 250));
+		jFrame.setPreferredSize(new Dimension(250, 100));
 		jFrame.setLayout(new FlowLayout());
 		JTextField textBox = new JTextField();
-		textBox.setPreferredSize(new Dimension(75, 50));
+		textBox.setPreferredSize(new Dimension(100, 30));
 		jFrame.add(textBox);
 		
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -136,10 +136,10 @@ public class UserInterface {
 	
 	public static void setColumnCount(){
 		JFrame jFrame = new JFrame("CSV TDE creator");
-		jFrame.setPreferredSize(new Dimension(250, 250));
+		jFrame.setPreferredSize(new Dimension(250, 100));
 		jFrame.setLayout(new FlowLayout());
 		JTextField textBox = new JTextField();
-		textBox.setPreferredSize(new Dimension(75, 50));
+		textBox.setPreferredSize(new Dimension(100, 30));
 		jFrame.add(textBox);
 		
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
