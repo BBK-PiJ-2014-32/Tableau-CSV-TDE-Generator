@@ -153,9 +153,16 @@ public class UserInterface {
 		button.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent event) {
-		        columnCount = Integer.parseInt(textBox.getText());
-		    	jFrame.dispose();
-		    	setCSVFile(); 
+		    	try {
+		    		columnCount = Integer.parseInt(textBox.getText());
+			        jFrame.dispose();
+			    	setCSVFile(); 
+		    	}
+		    	catch (NumberFormatException ex) {
+		    		JFrame errorFrame = new JFrame("Error");
+		    		JOptionPane.showMessageDialog(frame, "Please enter an integer");
+		    	}
+		    	
 		    }
 		});
 		
