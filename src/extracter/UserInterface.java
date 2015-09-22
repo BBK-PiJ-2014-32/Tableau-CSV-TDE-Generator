@@ -22,47 +22,6 @@ public class UserInterface {
 	public static String myString;
 	public static JTextArea editTextArea = new JTextArea("Type Here!");
 	public static String path;
-
-	
-	public static void setupFrame(){
-		JFrame jFrame = new JFrame("CSV TDE creator");
-		jFrame.setPreferredSize(new Dimension(1000, 1000));
-		
-		JMenuBar greenMenuBar = new JMenuBar();
-		
-		greenMenuBar.setOpaque(true);
-		greenMenuBar.setBackground(new Color(154, 165, 127));
-		greenMenuBar.setPreferredSize(new Dimension(200, 25));
-		
-		JTextField textField = new JTextField();
-		textField.setBounds(6, 41, 134, 28);
-		jFrame.add(textField);
-	    textField.setColumns(10);
-
-	    enterButton = new JButton();
-        enterButton.setPreferredSize(new Dimension(40, 40));
-        jFrame.add(enterButton);
-     
-        JButton fat = new JButton("Fat");
-        JButton skinny = new JButton("Skinny");
-
-        JPanel buttonPane = new JPanel();
-        buttonPane.add(skinny);
-
-        JFrame frame = new JFrame("Testing");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        frame.add(fat, BorderLayout.NORTH);
-        frame.add(buttonPane, BorderLayout.SOUTH);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-		
-		jFrame.pack();
-		jFrame.setVisible(true);
-	
-
-	}
 	
 	public static void setHeaders(int columnCount){
 		headingArray = new String[columnCount];
@@ -82,7 +41,7 @@ public class UserInterface {
 		jFrame.setVisible(true);
 		
 		button.addActionListener(new ActionListener() {
-			int count = 0;
+			int count = 1;
 			@Override
 		    public void actionPerformed(ActionEvent event) {
 				if(count < columnCount){
@@ -100,29 +59,26 @@ public class UserInterface {
 	}
 	
 	public static void setType(int columnCount){
-		typeArray = new String[columnCount];
+		String [] TypeChoices = {"Type.DATETIME", "Type.CHAR_STRING", "Type.UNICODE_STRING", "Type.DOUBLE", 
+				"Type.INTEGER", "Type.BOOLEAN", "Type.DATE"};
 		JFrame jFrame = new JFrame("Set Type");
-		jFrame.setPreferredSize(new Dimension(250, 100));
-		jFrame.setLayout(new FlowLayout());
-		JTextField textBox = new JTextField();
-		textBox.setPreferredSize(new Dimension(100, 30));
-		jFrame.add(textBox);
-		
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		 
-        JButton button = new JButton("Submit");
 		
-        jFrame.getContentPane().add(button);
+		JComboBox typeList = new JComboBox(TypeChoices);
+		typeList.setSelectedIndex(6);
+		
+		jFrame.add(typeList);
 		jFrame.pack();
 		jFrame.setVisible(true);
 		
-		button.addActionListener(new ActionListener() {
-			int count = 0;
+		typeArray = new String[columnCount];
+		
+		typeList.addActionListener(new ActionListener() {
+			int count = 1;
 			@Override
 		    public void actionPerformed(ActionEvent event) {
 				if(count < columnCount){
-					typeArray[count] = textBox.getText();
-					textBox.setText("");
+					typeArray[count] = (String) typeList.getSelectedItem();
 					count++;
 				} else {
 				
@@ -130,12 +86,11 @@ public class UserInterface {
 				}
 			}
 		});
-		
 	}
 	
 	
 	public static void setColumnCount(){
-		JFrame jFrame = new JFrame("CSV TDE creator");
+		JFrame jFrame = new JFrame("Set column count");
 		jFrame.setPreferredSize(new Dimension(250, 100));
 		jFrame.setLayout(new FlowLayout());
 		JTextField textBox = new JTextField();
@@ -159,7 +114,6 @@ public class UserInterface {
 			    	setCSVFile(); 
 		    	}
 		    	catch (NumberFormatException ex) {
-		    		JFrame errorFrame = new JFrame("Error");
 		    		JOptionPane.showMessageDialog(frame, "Please enter an integer");
 		    	}
 		    	
@@ -178,11 +132,13 @@ public class UserInterface {
 		int userSelection = fileChooser.showOpenDialog(parentFrame);
 		 
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
-		    File fileToOpen = fileChooser.getSelectedFile();
-		   path = fileToOpen.getAbsolutePath();
+		    	File fileToOpen = fileChooser.getSelectedFile();
+		    	path = fileToOpen.getAbsolutePath();
+		   
 		   setHeaders(columnCount);
 		}
 	}
+	
 	
 	public static void main(String[] args) throws InterruptedException{
 		setColumnCount();	
