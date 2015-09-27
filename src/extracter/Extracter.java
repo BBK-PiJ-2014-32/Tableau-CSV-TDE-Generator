@@ -18,7 +18,20 @@ public class Extracter {
 	
 	private File file;
 	private String[] headingArray;
+	private String[] typeArray;
 	private int columnCount;
+	
+	
+	public Extracter(int cc, String[] headingList, String[] typeList){
+		try{
+			columnCount = cc;
+			headingArray = headingList;
+			typeArray = typeArray;
+		} catch (NullPointerException ex){
+			ex.printStackTrace();
+		}
+	}
+	
 	
 	public void getFile() throws FileNotFoundException {
 		if(!file.exists()){
