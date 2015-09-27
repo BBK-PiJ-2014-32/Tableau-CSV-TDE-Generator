@@ -14,19 +14,19 @@ import java.io.Reader;
 import java.util.ArrayList;
 
 
-public class Extracter {
+public final class Extracter {
 	
 	private File file;
 	private String[] headingArray;
-	private String[] typeArray;
+	private Type[] typeArray;
 	private int columnCount;
 	
 	
-	public Extracter(int cc, String[] headingList, String[] typeList){
+	public Extracter(int cc, String[] headingList, Type[] typeList){
 		try{
 			columnCount = cc;
 			headingArray = headingList;
-			typeArray = typeArray;
+			typeArray = typeList;
 		} catch (NullPointerException ex){
 			ex.printStackTrace();
 		}
@@ -39,6 +39,16 @@ public class Extracter {
 			}
 	}
 
+	
+	private TableDefinition makeTableDefinition() throws TableauException {
+        TableDefinition tableDef = new TableDefinition();
+        tableDef.setDefaultCollation(Collation.EN_GB);
+        for(int i = 0; i < columnCount; i++){
+        	tableDef.addColumn(headingArray[i], typeArray[i]);
+        }
+        return tableDef;
+	}
+    
 	
 	/**public void Parser(){
 		try {
@@ -114,13 +124,4 @@ public class Extracter {
 	}
 
 
-	public static void main(String[] args){
-		Extracter ex = new Extracter();
-		ex.run();
-	}
-	
-	public void run(){
-		getHeaders(4);
-		
-	}
 }
