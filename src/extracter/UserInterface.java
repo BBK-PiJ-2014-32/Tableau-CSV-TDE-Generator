@@ -4,7 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.util.Scanner;
-
+import com.tableausoftware.TableauException;
+import com.tableausoftware.DataExtract.*;
 import javax.swing.*;
 
 
@@ -13,7 +14,7 @@ public class UserInterface {
 	public static JButton enterButton;
 	public static int columnCount;
 	public static String[] headingArray;
-	public static String[] typeArray;
+	public static Type[] typeArray;
     public static JTextArea output;
     public static JTextField input;
     static JFrame frame;
@@ -72,18 +73,19 @@ public class UserInterface {
 		jFrame.pack();
 		jFrame.setVisible(true);
 		
-		typeArray = new String[columnCount];
+		typeArray = new Type[columnCount];
 		
 		typeList.addActionListener(new ActionListener() {
 			int count = 1;
 			@Override
 		    public void actionPerformed(ActionEvent event) {
 				if(count < columnCount){
-					typeArray[count] = (String) typeList.getSelectedItem();
+					typeArray[count] = (Type) typeList.getSelectedItem();
 					count++;
 				} else {
 				
 				jFrame.dispose();
+				startExtracter();
 				}
 			}
 		});
@@ -124,6 +126,34 @@ public class UserInterface {
 		
 	}
 	
+	public static void startExtracter(){
+		JFrame jFrame = new JFrame("Start Extracter");
+		jFrame.setPreferredSize(new Dimension(250, 100));
+		jFrame.setLayout(new FlowLayout());
+		
+		JLabel label1 = new JLabel("Would you like to start the Extract?");
+		
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 
+        JButton button = new JButton("Ok");
+		
+        jFrame.getContentPane().add(button);
+        jFrame.add(label1);
+		jFrame.pack();
+		jFrame.setVisible(true);
+		
+		button.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent event) {
+			        jFrame.dispose();
+		    }
+		});
+		
+		
+	}
+	
+	
+	
 	public static void setCSVFile(){
 		JFrame parentFrame = new JFrame();
 		 
@@ -139,6 +169,9 @@ public class UserInterface {
 		   setHeaders(columnCount);
 		}
 	}
+	
+	
+	
 	
 	
 	public static void main(String[] args) throws InterruptedException{
