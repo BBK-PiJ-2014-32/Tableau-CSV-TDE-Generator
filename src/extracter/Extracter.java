@@ -40,7 +40,7 @@ public final class Extracter {
 	}
 
 	
-	private TableDefinition makeTableDefinition() throws TableauException {
+	private TableDefinition makeTableDef() throws TableauException {
         TableDefinition tableDef = new TableDefinition();
         tableDef.setDefaultCollation(Collation.EN_GB);
         for(int i = 0; i < columnCount; i++){
