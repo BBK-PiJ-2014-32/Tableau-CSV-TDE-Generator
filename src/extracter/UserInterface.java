@@ -14,7 +14,6 @@ public class UserInterface {
 	public static int columnCount;
 	public static String[] headingArray;
 	public static String[] typeArray;
-	private static String ENTER = "Enter";
     public static JTextArea output;
     public static JTextField input;
     static JFrame frame;
@@ -62,6 +61,8 @@ public class UserInterface {
 		String [] TypeChoices = {"Type.DATETIME", "Type.CHAR_STRING", "Type.UNICODE_STRING", "Type.DOUBLE", 
 				"Type.INTEGER", "Type.BOOLEAN", "Type.DATE"};
 		JFrame jFrame = new JFrame("Set Type");
+		jFrame.setPreferredSize(new Dimension(250, 100));
+		jFrame.setLayout(new FlowLayout());
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JComboBox typeList = new JComboBox(TypeChoices);
