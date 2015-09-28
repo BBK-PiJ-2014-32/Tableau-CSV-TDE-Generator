@@ -4,8 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.util.Scanner;
+
 import com.tableausoftware.TableauException;
 import com.tableausoftware.DataExtract.*;
+
 import javax.swing.*;
 
 
@@ -59,8 +61,8 @@ public class UserInterface {
 	}
 	
 	public static void setType(int columnCount){
-		String [] TypeChoices = {"Type.DATETIME", "Type.CHAR_STRING", "Type.UNICODE_STRING", "Type.DOUBLE", 
-				"Type.INTEGER", "Type.BOOLEAN", "Type.DATE"};
+		Type [] TypeChoices = {Type.DATETIME, Type.CHAR_STRING, Type.UNICODE_STRING, Type.DOUBLE, 
+				Type.INTEGER, Type.BOOLEAN, Type.DATE};
 		JFrame jFrame = new JFrame("Set Type");
 		jFrame.setPreferredSize(new Dimension(250, 100));
 		jFrame.setLayout(new FlowLayout());
@@ -79,7 +81,7 @@ public class UserInterface {
 			int count = 1;
 			@Override
 		    public void actionPerformed(ActionEvent event) {
-				if(count < columnCount){
+				if(count <= columnCount){
 					typeArray[count] = (Type) typeList.getSelectedItem();
 					count++;
 				} else {
@@ -149,6 +151,13 @@ public class UserInterface {
 		    }
 		});
 		
+		Extracter ex = new Extracter(columnCount, headingArray, typeArray, path);
+		try {
+			 TableDefinition tableDef = ex.makeTableDef();
+			 ex.printTableDefinition(tableDef);
+		} catch (TableauException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -169,9 +178,6 @@ public class UserInterface {
 		   setHeaders(columnCount);
 		}
 	}
-	
-	
-	
 	
 	
 	public static void main(String[] args) throws InterruptedException{

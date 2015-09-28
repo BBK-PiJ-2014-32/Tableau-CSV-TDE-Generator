@@ -14,19 +14,21 @@ import java.io.Reader;
 import java.util.ArrayList;
 
 
-public final class Extracter {
+public class Extracter {
 	
 	private File file;
 	private String[] headingArray;
 	private Type[] typeArray;
 	private int columnCount;
+	private String path;
 	
 	
-	public Extracter(int cc, String[] headingList, Type[] typeList){
+	public Extracter(int cc, String[] headingList, Type[] typeList, String filePath){
 		try{
 			columnCount = cc;
 			headingArray = headingList;
 			typeArray = typeList;
+			path = filePath;
 		} catch (NullPointerException ex){
 			ex.printStackTrace();
 		}
@@ -40,15 +42,26 @@ public final class Extracter {
 	}
 
 	
-	private TableDefinition makeTableDef() throws TableauException {
+	public TableDefinition makeTableDef() throws TableauException {
         TableDefinition tableDef = new TableDefinition();
         tableDef.setDefaultCollation(Collation.EN_GB);
         for(int i = 0; i < columnCount; i++){
         	tableDef.addColumn(headingArray[i], typeArray[i]);
         }
         return tableDef;
+        
+       
 	}
     
+	public static void printTableDefinition(TableDefinition tableDef) throws TableauException {
+        int numColumns = tableDef.getColumnCount();
+        for ( int i = 0; i < numColumns; ++i ) {
+            Type type = tableDef.getColumnType(i);
+            String name = tableDef.getColumnName(i);
+
+            System.err.format("Column %d: %s (%#06x)\n", i, name, type.getValue());
+        }
+    }
 	
 	/**public void Parser(){
 		try {
