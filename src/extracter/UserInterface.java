@@ -156,6 +156,7 @@ public class UserInterface {
 		try {
 			 TableDefinition tableDef = ex.makeTableDef();
 			 ex.printTableDefinition(tableDef);
+			 ex.csvReader();
 		} catch (TableauException e) {
 			e.printStackTrace();
 		}

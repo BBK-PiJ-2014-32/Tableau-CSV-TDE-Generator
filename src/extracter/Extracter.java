@@ -4,6 +4,8 @@ import com.tableausoftware.TableauException;
 import com.tableausoftware.extract.*;
 import com.tableausoftware.common.*;
 
+import com.opencsv.*;
+
 import java.util.List;
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -37,9 +39,9 @@ public class Extracter {
 	
 	
 	public void getFile() throws FileNotFoundException {
-		if(!file.exists()){
-			File file = new File("CSVTest.csv");
-			}
+		//if(!file.exists()){
+			file = new File(path);
+			//}
 	}
 
 	
@@ -64,15 +66,11 @@ public class Extracter {
         }
     }
 	
-	/**public void Parser(){
+	public void csvReader(){
 		try {
 			getFile();
-			Reader in = new FileReader("file");
-			Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
-			for (CSVRecord record : records) {
-			    String lastName = record.get("Last Name");
-			    String firstName = record.get("First Name");
-			}
+			CSVReader reader = new CSVReader(new FileReader(file));
+		    List<String[]> csvIn = reader.readAll();
 			
 			
 		} catch (FileNotFoundException ex ){
@@ -83,7 +81,7 @@ public class Extracter {
 		
 	}
 			
-	public List<String> getTableDef(){
+	/**public List<String> getTableDef(){
 		try{
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			List<String> lines = new ArrayList<>();
