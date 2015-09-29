@@ -46,12 +46,12 @@ public class UserInterface {
 			int count = 1;
 			@Override
 		    public void actionPerformed(ActionEvent event) {
-				if(count < columnCount){
+				if(count < columnCount-1){
 					headingArray[count] = textBox.getText();
 					textBox.setText("");
 					count++;
 				} else {
-				
+				headingArray[count] = textBox.getText();
 				jFrame.dispose();
 				setType(columnCount);
 				}
@@ -81,11 +81,11 @@ public class UserInterface {
 			int count = 1;
 			@Override
 		    public void actionPerformed(ActionEvent event) {
-				if(count <= columnCount){
+				if(count <= columnCount-1){
 					typeArray[count] = (Type) typeList.getSelectedItem();
 					count++;
 				} else {
-				
+				typeArray[count] = (Type) typeList.getSelectedItem();
 				jFrame.dispose();
 				startExtracter();
 				}
