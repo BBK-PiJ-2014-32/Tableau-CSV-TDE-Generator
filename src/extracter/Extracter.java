@@ -1,7 +1,8 @@
 package extracter;
 
 import com.tableausoftware.TableauException;
-import com.tableausoftware.DataExtract.*;
+import com.tableausoftware.extract.*;
+import com.tableausoftware.common.*;
 
 import java.util.List;
 import java.util.Scanner;

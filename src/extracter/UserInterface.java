@@ -6,7 +6,8 @@ import java.io.File;
 import java.util.Scanner;
 
 import com.tableausoftware.TableauException;
-import com.tableausoftware.DataExtract.*;
+import com.tableausoftware.extract.*;
+import com.tableausoftware.common.*;
 
 import javax.swing.*;
 
@@ -43,7 +44,7 @@ public class UserInterface {
 		jFrame.setVisible(true);
 		
 		button.addActionListener(new ActionListener() {
-			int count = 1;
+			int count = 0;
 			@Override
 		    public void actionPerformed(ActionEvent event) {
 				if(count < columnCount-1){
@@ -78,10 +79,10 @@ public class UserInterface {
 		typeArray = new Type[columnCount];
 		
 		typeList.addActionListener(new ActionListener() {
-			int count = 1;
+			int count = 0;
 			@Override
 		    public void actionPerformed(ActionEvent event) {
-				if(count <= columnCount-1){
+				if(count < columnCount-1){
 					typeArray[count] = (Type) typeList.getSelectedItem();
 					count++;
 				} else {
