@@ -63,7 +63,7 @@ public class UserInterface {
 	
 	public static void setType(int columnCount){
 		Type [] TypeChoices = {Type.DATETIME, Type.CHAR_STRING, Type.UNICODE_STRING, Type.DOUBLE, 
-				Type.INTEGER, Type.BOOLEAN, Type.DATE};
+				Type.INTEGER, Type.BOOLEAN, Type.DATE, Type.DURATION};
 		JFrame jFrame = new JFrame("Set Type");
 		jFrame.setPreferredSize(new Dimension(250, 100));
 		jFrame.setLayout(new FlowLayout());
@@ -176,7 +176,7 @@ public class UserInterface {
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		    	File fileToOpen = fileChooser.getSelectedFile();
 		    	path = fileToOpen.getAbsolutePath();
-		   
+		    	System.out.println(path);
 		   setHeaders(columnCount);
 		}
 	}

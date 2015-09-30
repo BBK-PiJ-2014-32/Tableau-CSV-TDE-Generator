@@ -112,10 +112,13 @@ public class Extracter {
 				Row row = new Row(tableDef);
 				switch(getType(j)){
 				case "CHAR_STRING" : row.setCharString(j, lineIn[j]);
-				case "STRING" : row.setString(j, lineIn[j]);
+				case "UNICODE_STRING" : row.setString(j, lineIn[j]);
 				case "DOUBLE" : row.setDouble(j, (double) Integer.parseInt(lineIn[j]));
 				case "INTEGER" : row.setInteger(j, Integer.parseInt(lineIn[j]));
 				case "BOOLEAN" : row.setBoolean(j, Boolean.parseBoolean(lineIn[j]));
+				case "DURATION" : row.setDuration(arg0, arg1, arg2, arg3, arg4, arg5);
+				case "DATE" : row.setDate(arg0, arg1, arg2, arg3);
+				case "DATETIME" : row.setDateTime(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 					} 
 				}
 				
