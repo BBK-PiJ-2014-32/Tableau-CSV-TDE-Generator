@@ -102,7 +102,7 @@ public class Extracter {
 
 
 		
-	}*/
+	}
 	
 	public void insertData(TableDefinition tableDef){
 		int i = 0;
@@ -113,6 +113,19 @@ public class Extracter {
 		
 		
 		}
+	}*/
+	
+	public int getRowCount(File file){
+		try{
+			CSVReader newReader = new CSVReader(new FileReader(file));
+			int rowCount = newReader.readAll().size();
+			newReader.close();
+			return rowCount;
+		} catch (IOException ex){
+			ex.printStackTrace();
+		}
+		
+		return 0;
 	}
 	
 	public int getColumnCount(){
