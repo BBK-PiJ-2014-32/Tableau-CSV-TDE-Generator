@@ -3,7 +3,6 @@ package extracter;
 import com.tableausoftware.TableauException;
 import com.tableausoftware.extract.*;
 import com.tableausoftware.common.*;
-
 import com.opencsv.*;
 
 import java.util.List;
@@ -102,19 +101,31 @@ public class Extracter {
 
 
 		
-	}
-	
-	public void insertData(TableDefinition tableDef){
-		int i = 0;
-		Row row = new Row(tableDef);
-		switch(getType(i)){
-		case boolean : row.setBoolean(, i);
-		
-		
-		
-		}
 	}*/
 	
+	public void insertData(TableDefinition tableDef){
+		try {
+		int rowCount = getRowCount(file);
+		for(int i = 0; i < rowCount; i++){
+			String[] lineIn = reader.readNext();
+			for(int j = 0; j < columnCount; j++){
+				Row row = new Row(tableDef);
+				switch(getType(j)){
+				case "CHAR_STRING" : row.setCharString(j, lineIn[j]);
+				case "STRING" : row.setString(j, lineIn[j]);
+				case "DOUBLE" : row.setDouble(j, (double) Integer.parseInt(lineIn[j]));
+				case "INTEGER" : row.setInteger(j, Integer.parseInt(lineIn[j]));
+				case "BOOLEAN" : row.setBoolean(j, Boolean.parseBoolean(lineIn[j]));
+					} 
+				}
+				
+			}
+		
+		} catch (TableauException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	///ATETIME, Type.CHAR_STRING, Type.UNICODE_STRING, Type.DOUBLE, Type.INTEGER, Type.BOOLEAN, Type.DATE
 	public int getRowCount(File file){
 		try{
 			CSVReader newReader = new CSVReader(new FileReader(file));

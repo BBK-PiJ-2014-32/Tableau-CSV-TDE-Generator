@@ -20,6 +20,8 @@ public class CSVTestReader {
 				System.out.println(Arrays.toString(it.next()));
 			}
 			
+			System.out.println(reader.readAll().size());
+		
 			
 		} catch (IOException e) {
 			e.printStackTrace();

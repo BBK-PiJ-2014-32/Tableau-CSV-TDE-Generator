@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="/Users/philhannant/DataExtract API/Java/tableaucommon.jar"/>
 	<classpathentry kind="lib" path="/Users/philhannant/DataExtract API/Java/tableauextract.jar"/>
 	<classpathentry kind="lib" path="/Users/philhannant/DataExtract API/Java/tableauserver.jar"/>
+	<classpathentry kind="lib" path="/Users/philhannant/External Jars/opencsv-3.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
