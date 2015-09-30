@@ -24,6 +24,7 @@ public class Extracter {
 	private Type[] typeArray;
 	private int columnCount;
 	private String path;
+	private CSVReader reader;
 	
 	
 	public Extracter(int cc, String[] headingList, Type[] typeList, String filePath){
@@ -41,6 +42,7 @@ public class Extracter {
 	public void getFile() throws FileNotFoundException {
 		//if(!file.exists()){
 			file = new File(path);
+			
 			//}
 	}
 
@@ -69,7 +71,7 @@ public class Extracter {
 	public void csvReader(){
 		try {
 			getFile();
-			CSVReader reader = new CSVReader(new FileReader(file));
+			reader = new CSVReader(new FileReader(file));
 		    List<String[]> csvIn = reader.readAll();
 			
 			
@@ -102,6 +104,17 @@ public class Extracter {
 		
 	}*/
 	
+	public void insertData(TableDefinition tableDef){
+		int i = 0;
+		Row row = new Row(tableDef);
+		switch(getType(i)){
+		case boolean : row.setBoolean(, i);
+		
+		
+		
+		}
+	}
+	
 	public int getColumnCount(){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter header title");
@@ -122,17 +135,9 @@ public class Extracter {
 		
 	}
 	
-	public String[] getType(int columnCount){
-		Scanner sc = new Scanner(System.in);
-		headingArray = new String[columnCount];
-		String heading = "";
-		for(int i = 0; i < columnCount; i++){
-			System.out.println("Enter field type");
-			headingArray[i] = sc.next();
-		}
-		sc.close();
-		return headingArray;
+	public String getType(int column){
 		
+		return null;
 	}
 
 
